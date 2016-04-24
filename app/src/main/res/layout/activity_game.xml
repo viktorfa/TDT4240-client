@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="no.group16.softark.tdt4240.softarkclient.GameActivity"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|top"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/relativeLayout2"
+            android:layout_toStartOf="@+id/relativeLayout2"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/relativeLayout">
+
+            <SurfaceView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/surfaceView"
+                android:layout_centerHorizontal="true"
+                android:padding="0dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tableLayout">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/enteredLettersRow"
+                    android:layout_margin="0dp"
+                    android:layout_weight="0"
+                    android:gravity="center_horizontal">
+
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/toolContainer">
+
+            </LinearLayout>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deleteDrawingBtn"
+                android:src="@drawable/delete"
+                android:backgroundTint="@android:color/darker_gray"
+                android:backgroundTintMode="src_over"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:tint="@android:color/holo_red_dark" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolContainer"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/toolContainer">
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|top"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/relativeLayout2"
+            android:background="#32b5ff"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/relativeLayout">
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/scrollView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10dp">
+
+            </ScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="who is drawing"
+                android:id="@+id/whoIsDrawingTextView"
+                android:background="@android:color/white"
+                android:padding="5dp"
+
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="17dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="score list"
+                android:id="@+id/playersTextView"
+                android:background="@android:color/white"
+                android:padding="5dp"
+                android:layout_below="@+id/whoIsDrawingTextView"
+                android:layout_alignRight="@+id/whoIsDrawingTextView"
+                android:layout_alignEnd="@+id/whoIsDrawingTextView"
+                android:layout_alignLeft="@+id/whoIsDrawingTextView"
+                android:layout_alignStart="@+id/whoIsDrawingTextView" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#56a018"
+            android:id="@+id/relativeLayout">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/clockTextView"
+                android:layout_toStartOf="@+id/clockTextView"
+                android:id="@+id/keyboardLayout">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/keyboardRow1"
+                        android:layout_margin="0dp"
+                        android:layout_weight="0">
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/keyboardRow2"
+                        android:layout_margin="0dp"
+                        android:layout_weight="0">
+
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clockTextView"
+                android:text="00:28"
+                android:textSize="26dp"
+                android:layout_below="@+id/keyboardLayout"
+                android:layout_alignTop="@+id/keyboardLayout"
+                android:background="#8ec73f"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Word to draw"
+                android:id="@+id/wordToDrawTextView"
+                android:padding="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/clockTextView"
+                android:layout_toStartOf="@+id/clockTextView"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
