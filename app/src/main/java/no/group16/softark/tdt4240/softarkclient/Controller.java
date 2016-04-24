@@ -15,12 +15,10 @@ import java.util.ArrayList;
 public abstract class Controller {
     protected Logic gameLogic;
     protected IGameView gameView;
-    protected ServerHandler serverHandler;
 
-    protected Controller(Context context){
-        gameView =  new GameView(context);
-        gameLogic = new GameLogic();
-        serverHandler = GameManager.getInstance().getServerHandler();
+    protected Controller(Context context, IGameView gameView, Logic gamelogic){
+        this.gameView =  gameView;
+        this.gameLogic = gamelogic;
         onInit();
     }
 
@@ -64,15 +62,6 @@ public abstract class Controller {
     public void setGameView(IGameView gameView) {
         this.gameView = gameView;
     }
-
-    public ServerHandler getServerHandler() {
-        return serverHandler;
-    }
-
-    public void setServerHandler(ServerHandler serverHandler) {
-        this.serverHandler = serverHandler;
-    }
-
 
 
 }

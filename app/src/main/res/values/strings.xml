@@ -34,7 +34,7 @@
 
     <!-- GameSummaryActivity -->
     <string name="doneBtn">Done</string>
-    <string name="gameOverTitleBtn">GG WP </string>
+    <string name="gameOverTitleBtn">Game over</string>
 
     <!-- Dialogs / messages -->
     <string name="connecting">Connecting to server...</string>

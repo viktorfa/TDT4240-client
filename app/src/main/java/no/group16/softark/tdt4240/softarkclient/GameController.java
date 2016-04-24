@@ -33,7 +33,7 @@ public class GameController extends Controller implements IReceiver {
     Context context;
 
     public GameController(Context context, ArrayList<String> players){
-        super(context);
+        super(context, new GameView(context), new GameLogic());
         this.context = context;
 
         // Listen for these server events:
@@ -200,10 +200,6 @@ public class GameController extends Controller implements IReceiver {
     @Override
     protected void handleGameOverNotification() {
         Intent summaryActivityIntent = new Intent(context, GameSummaryActivity.class);
-        Bundle bundle = new Bundle();
-
-        String playerList = gameLogic.getPlayerScoresAsString();
-        gameView.updatePlayerListTextView(playerList);
         summaryActivityIntent.putExtra("playerScores", gameLogic.getPlayerScores());
         summaryActivityIntent.setFlags(summaryActivityIntent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
         context.startActivity(summaryActivityIntent);

@@ -12,7 +12,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 /**
@@ -67,7 +74,7 @@ public class GameLogic extends Logic {
         tmpPath = new DrawingPath(new ArrayList<PointF>(), activeToolId, Color.BLACK); //TODO
         tmpPath.points.add(new PointF(nx, ny));
         onTemporaryPathByUser(tmpPath);
-        tmpPathIndex = getPaths().size()-1;
+        tmpPathIndex = paths.size()-1;
     }
 
     @Override
@@ -132,17 +139,11 @@ public class GameLogic extends Logic {
                 String toolId = json.getString("drawingTool");
                 String penSize = json.getString("drawingTool");
                 DrawingPath drawingPath = new DrawingPath(pointList, toolId, Color.BLACK);
-                addPath(drawingPath);
+                paths.add(drawingPath);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-
-    @Override
-    public void onSomeoneGuessedCorrectly(HashMap<String, Integer> newScores) {
-        this.playerScores = newScores;
     }
 
     @Override
@@ -186,7 +187,6 @@ public class GameLogic extends Logic {
     }
 
 
-    @Override
     protected void onNewPathByUser(DrawingPath drawingPath) {
         JSONObject msg = new JSONObject();
         try {
@@ -208,13 +208,9 @@ public class GameLogic extends Logic {
 
         GameManager.getInstance().getServerHandler().queueMessage(msg);
 
-        addPath(drawingPath);
+        paths.add(drawingPath);
     }
 
-    @Override
-    protected void clearPaths() {
-        this.paths.clear();
-    }
 
     @Override
     public void sendAnswerCheck(String word) {
@@ -228,12 +224,11 @@ public class GameLogic extends Logic {
         GameManager.getInstance().getServerHandler().queueMessage(msg);
     }
 
-    @Override
     protected void onTemporaryPathByUser(DrawingPath drawingPath) {
         if(tmpPathIndex == -1)
-            getPaths().add(drawingPath);
+            paths.add(drawingPath);
         else
-            getPaths().set(tmpPathIndex, drawingPath);
+            paths.set(tmpPathIndex, drawingPath);
     }
 
     public void setMyTurnToDraw(Boolean myTurnToDraw) {
@@ -264,10 +259,6 @@ public class GameLogic extends Logic {
         isGameOwner = gameOwner;
     }
 
-    public void addPath(JSONObject data) {
-        //paths.add(new DrawingPath())
-    }
-
     public String getSelectedCharacters() {
         return selectedCharacters;
     }
@@ -286,17 +277,7 @@ public class GameLogic extends Logic {
 
     @Override
     public void setPlayerList(HashMap<String, Integer> playersScores) {
-        this.playerScores = playersScores;
-    }
-
-    @Override
-    ArrayList<DrawingPath> getPaths() {
-        return paths;
-    }
-
-    @Override
-    DrawingPath getLastPath() {
-        return paths.get(paths.size()-1);
+        this.playerScores = sortByValues(playersScores);
     }
 
     @Override
@@ -314,8 +295,8 @@ public class GameLogic extends Logic {
     }
 
     @Override
-    public void addPath(DrawingPath path) {
-        this.paths.add(path);
+    ArrayList<DrawingPath> getPaths() {
+        return paths;
     }
 
     @Override
@@ -323,4 +304,26 @@ public class GameLogic extends Logic {
         return activeToolId;
     }
 
+
+    // http://beginnersbook.com/2013/12/how-to-sort-hashmap-in-java-by-keys-and-values/
+    private static HashMap sortByValues(HashMap map) {
+        List list = new LinkedList(map.entrySet());
+        // Defined Custom Comparator here
+        Collections.sort(list, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                return ((Comparable) ((Map.Entry) (o1)).getValue())
+                        .compareTo(((Map.Entry) (o2)).getValue());
+            }
+        });
+
+        ListIterator it = list.listIterator(list.size());
+        HashMap sortedHashMap = new LinkedHashMap();
+
+        while(it.hasPrevious()) {
+            Map.Entry entry = (Map.Entry) it.previous();
+            sortedHashMap.put(entry.getKey(), entry.getValue());
+        }
+
+        return sortedHashMap;
+    }
 }

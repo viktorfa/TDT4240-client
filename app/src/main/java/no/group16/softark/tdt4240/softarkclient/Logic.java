@@ -14,6 +14,7 @@ import java.util.Map;
  * Created by tien on 4/15/2016.
  */
 public abstract class Logic {
+
     private final int MAX_LETTERS_PER_ROW;
 
     public Logic(int maxLetterPerRow){
@@ -22,7 +23,7 @@ public abstract class Logic {
     public int getMAX_LETTERS_PER_ROW() {
         return MAX_LETTERS_PER_ROW;
     }
-    abstract public void addPath(DrawingPath path);
+    //abstract public void addPath(DrawingPath path);
 
     abstract public boolean getMyTurnToDraw();
     abstract public String getActiveToolId();
@@ -33,16 +34,10 @@ public abstract class Logic {
     abstract public void onNewWordToGuess(String keyboard, String drawer);
     abstract public void onMyTurnToDraw();
     abstract public void onNewPathByServer(JSONObject json);
-    abstract public void onSomeoneGuessedCorrectly(HashMap<String, Integer> newScores);
     abstract public void onReadyToStartGame();
     abstract public void onUserClearCanvas();
     abstract public void onTimeUpdate(int seconds);
     abstract public void onLeavingGame();
-
-    //abstract public void onMy(HashMap<String, Integer> newScores);
-    abstract protected void onTemporaryPathByUser(DrawingPath drawingPath);
-    abstract protected void onNewPathByUser(DrawingPath drawingPath);
-    abstract protected void clearPaths();
 
     abstract public void sendAnswerCheck(String word);
     abstract public HashMap<String, Integer> getPlayerScores();
@@ -52,7 +47,6 @@ public abstract class Logic {
     abstract public void setDrawingToolId(String id);
 
     abstract ArrayList<DrawingPath> getPaths();
-    abstract DrawingPath getLastPath();
 
     abstract String getTimeAsString();
 
