@@ -24,6 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
-    compile files('C:/Users/Even/Documents/skole/progark2/SoftArkClient/SoftArkClient/libs/kryonet-2.21-all.jar')
-    compile files('C:/Users/tien/Documents/skole/SoftArk/SoftArkClient/SoftArkClient/libs/kryonet-2.21-all.jar')
+    compile 'com.esotericsoftware:kryonet:2.22.0-RC1'
 }
